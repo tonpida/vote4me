@@ -1,0 +1,123 @@
+/* General body styles */
+body {
+  background: linear-gradient(to bottom, #f0f2f5, #dfe3ee);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Main container */
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+/* Facebook logo */
+.logo {
+  font-size: 40px;
+  color: #1877f2;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Form container */
+.form-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Input fields */
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #1877f2;
+}
+
+/* Login button */
+button.login {
+  width: 100%;
+  padding: 14px;
+  background-color: #1877f2;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.login:hover {
+  background-color: #166fe5;
+}
+
+/* Forgot password */
+.forgot-password {
+  display: block;
+  color: #1877f2;
+  font-size: 14px;
+  margin: 12px 0;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Signup button */
+button.signup {
+  width: 100%;
+  padding: 14px;
+  background-color: white;
+  color: #1877f2;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #1877f2;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.signup:hover {
+  background-color: #e7f3ff;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+  margin-top: 20px;
+}
+
+.footer a {
+  color: #1877f2;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Meta logo */
+.meta-logo {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+  font-weight: bold;
+}
