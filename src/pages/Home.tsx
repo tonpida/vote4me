@@ -6,7 +6,7 @@ import { useState } from "react";
 const Home = () => {
   // Voting State
   const totalVotesNeeded = 5000000;
-  const [votes, setVotes] = useState(2375800);
+  const [votes] = useState(2375800);
 
   const votesRemaining = totalVotesNeeded - votes;
   const progressPercentage = (votes / totalVotesNeeded) * 100;
