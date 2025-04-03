@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-import astridImage from "../assets/astrid.jpg";
+import astridImage from "../assets/cathy.jpg";
 import { useState } from "react";
+import { useSite } from '../context/SiteContext';
 
 const Home = () => {
   // Voting State
@@ -11,28 +12,27 @@ const Home = () => {
   const votesRemaining = totalVotesNeeded - votes;
   const progressPercentage = (votes / totalVotesNeeded) * 100;
 
+  const { siteId } = useSite();
+  const {profileName} = useSite();
+  const {candidateText} = useSite();
+  const {passionText} = useSite();
+  const {voteText} = useSite();
+  
   return (
     <div style={styles.container}>
       {/* Astrid's Image and Intro */}
       <div style={styles.profileSection}>
         <img src={astridImage} alt="Astrid Eriksen" style={styles.profileImage} />
-        <h1 style={styles.name}>Astrid Eriksen</h1>
-        <h3 style={styles.position}>Candidate for World Medical Association Committee Chair</h3>
-        <p style={styles.shortNote}>
-          Dedicated to driving positive change in global healthcare policies.
-        </p>
+        <h1 style={styles.name}>{profileName}</h1>
+        <h3 style={styles.position}>{candidateText}</h3>
+        <p style={styles.shortNote}>{passionText} </p>
       </div>
 
       {/* Voting Section */}
       <div style={styles.votingSection}>
         <h2 style={styles.voteHeading}>VOTE FOR ME</h2>
-        <p style={styles.voteText}>
-          I am running for the <strong>World Medical Association Committee Chair</strong>{" "}
-          to advocate for ethical medical practices, improved healthcare policies,  
-          and innovation in global health. With <strong>10+ years</strong> in the field,  
-          I have worked tirelessly to <strong>bridge the gap</strong> between research, policy,  
-          and patient care. Your vote is not just a ballot—<strong>it’s a step towards  
-          a healthier future.</strong>
+        <p style={styles.voteTextStyle}>
+        {voteText}
         </p>
 
         {/* Voting Progress Section */}
@@ -131,7 +131,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "pink",
     margin: "0 0 1rem 0",
   },
-  voteText: {
+  voteTextStyle: {
     fontSize: "16px",
     lineHeight: "1.6",
     margin: "0 auto 1.5rem",
@@ -183,6 +183,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: "10px",
     transition: "opacity 0.2s ease",
     outline:'none',
+    color:'white',
   },
   icon: {
     verticalAlign: "middle",
